@@ -378,6 +378,13 @@ class ClientController extends Controller
             'title' => 'Consultar Orden'
         ];
 
+        if (Auth::guard('customer')->check()) {
+            $data['myOrders'] = Order::where('customer_id', Auth::guard('customer')->id())
+                ->with('details')
+                ->orderByDesc('id')
+                ->get();
+        }
+
         return view('client.check-order', $data);
     }
 
@@ -446,27 +453,6 @@ class ClientController extends Controller
         return view('client.contact', $data);
     }
 
-
-    public function myOrders()
-    {
-        if (!Auth::guard('customer')->check()) {
-            return redirect()->route('customer.login');
-        }
-
-        $customer = Auth::guard('customer')->user();
-        $orders = Order::where('customer_id', $customer->id)
-                    ->with('details')
-                    ->orderByDesc('id')
-                    ->get();
-
-        $data = [
-            'shop' => Shop::first(),
-            'orders' => $orders,
-            'title' => 'Mis Órdenes'
-        ];
-
-        return view('client.my-orders', $data);
-    }
 
     public function contactForm(Request $request){
 

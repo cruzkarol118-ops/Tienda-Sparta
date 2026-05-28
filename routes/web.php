@@ -96,7 +96,7 @@ Route::controller(ClientController::class)->group(function(){
     Route::post('/client/contactForm', 'contactForm')->name('clientContactForm');
     Route::get('/profile', 'profile')->name('customer.profile')->middleware('auth:customer');
     Route::post('/profile-update', 'profileUpdate')->name('customer.profile.update')->middleware('auth:customer');
-    Route::get('/my-orders', 'myOrders')->name('clientMyOrders')->middleware('auth:customer');
+
 });
 
 

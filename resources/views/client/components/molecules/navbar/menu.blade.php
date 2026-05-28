@@ -14,11 +14,6 @@
   <li class="nav-item">
     <a href="{{ route('clientCheckOrder') }}" class="nav-link">&Oacute;rdenes</a>
   </li>
-  @auth('customer')
-    <li class="nav-item">
-      <a href="{{ route('clientMyOrders') }}" class="nav-link">Mis &Oacute;rdenes</a>
-    </li>
-  @endauth
   <li class="nav-item">
     <a href="{{ route('contact') }}" class="nav-link">Contacto</a>
   </li>
